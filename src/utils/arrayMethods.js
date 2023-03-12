@@ -3,6 +3,11 @@ export const todoCheckedCounter = (todos) => {
   return count;
 };
 
+export const getTodoById = (todos, todoId) => {
+  const todo = todos.find((todo) => todo.id === todoId);
+  return todo;
+};
+
 export const getTodoNewId = (todos) => {
   if (todos.length === 0) return 0;
   const arrayOfId = todos.map((todo) => todo.id);

@@ -6,6 +6,7 @@ import {
 } from "./asyncThunks";
 import {
   filterTodosToDeleteById,
+  getTodoById,
   todoCheckedCounter,
 } from "utils/arrayMethods";
 
@@ -36,12 +37,13 @@ export const todoToggleCheckedExtraReducer = (builder) => {
     })
     .addCase(toggleCheckTodoById.fulfilled, (state, action) => {
       state.patchLoading = false;
-      const todo = state.todos.find((todo) => todo.id === action.payload?.id);
+      const todos = state.todos;
+      const todoId = action.payload.id;
+      const todo = getTodoById(todos, todoId);
       if (todo) {
         todo.checked = !todo.checked;
-        state.checkedCounter = state.todos.filter(
-          (todo) => todo.checked
-        ).length;
+        const checkedCount = todoCheckedCounter(state.todos);
+        state.checkedCounter = checkedCount;
       }
     })
     .addCase(toggleCheckTodoById.rejected, (state, action) => {
