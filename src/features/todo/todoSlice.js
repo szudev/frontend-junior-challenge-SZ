@@ -35,5 +35,4 @@ export const selectError = (state) => state.todo.error;
 export const selectPatchLoading = (state) => state.todo.patchLoading;
 export const selectPostLoading = (state) => state.todo.postLoading;
 export const selectDeleteLoading = (state) => state.todo.deleteLoading;
-//export const { toggleChecked } = todoSlice.actions;
 export default todoSlice.reducer;
