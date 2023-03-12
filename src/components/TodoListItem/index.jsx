@@ -5,16 +5,22 @@ export default function TodoListItem({ onCheck, checked, onDelete, label }) {
         tabIndex="0"
         role="checkbox"
         aria-checked
-        className="rounded-[4px] hover:opacity-50 flex items-center flex-nowrap py-[5px] pr-[10px] pl-[5px]"
+        className="rounded-[4px] gap-[5px] hover:opacity-50 flex items-center flex-nowrap py-[5px] pr-[10px] pl-[5px]"
       >
         <input
           tabIndex="-1"
-          className="mr-[5px]"
+          className="cursor-pointer"
           type="checkbox"
           checked={checked}
           onChange={onCheck}
         />
-        <span className={checked ? "line-through" : ""}>{label}</span>
+        <span
+          className={`${
+            checked ? `line-through` : ``
+          } max-w-[343px] break-words`}
+        >
+          {label}
+        </span>
       </div>
       <button
         type="button"
