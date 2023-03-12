@@ -2,6 +2,8 @@ import usePostTodoThunk from "hooks/usePostTodo";
 import { useState } from "react";
 import AddButton from "components/Buttons/AddButton";
 import ProcessingButton from "components/Buttons/ProcessingButton";
+import { toast } from "react-toastify";
+import { toastOptions } from "utils/toastOptions";
 
 export default function TodoForm() {
   const { postLoading, postNewTodo } = usePostTodoThunk();
@@ -14,8 +16,15 @@ export default function TodoForm() {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    postNewTodo(label);
-    setLabel("");
+    if (label === "") {
+      toast.warning(
+        "Se requiere rellenar el formulario para agregar un nuevo TODO.",
+        toastOptions
+      );
+    } else {
+      postNewTodo(label);
+      setLabel("");
+    }
   };
 
   return (
